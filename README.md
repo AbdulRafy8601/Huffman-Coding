@@ -37,10 +37,16 @@ A C++ implementation of Huffman coding for file compression and decompression. T
 ## Usage
 
 ### Compilation
-
+As there are multiple .cpp files, so we will gether them with the main as well to compile the program.
+So, instead of 
 ```bash
-g++ -o huffman main.cpp HuffmanNode.cpp -std=c++11
+g++ main.cpp -o output
 ```
+which is to compile the single cpp file program with possibly multiple header files, we will use
+```bash
+g++ huffman main.cpp HuffmanNode.cpp -o output
+```
+because we have two cpp files. So, to link correctly and avoid error, we will use the second bash.
 
 ### Running the Program
 
