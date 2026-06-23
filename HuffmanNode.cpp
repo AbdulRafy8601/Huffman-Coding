@@ -12,7 +12,7 @@ HuffmanNode::HuffmanNode(unsigned char d, int n)
 
     root = new Node;
     root->data = d;
-    root->freq = n;
+    root->freq = n; 
     root->leftChild = nullptr;
     root->rightChild = nullptr;
 }
@@ -37,8 +37,8 @@ HuffmanNode::HuffmanNode(HuffmanNode *left, HuffmanNode *right)
 
     left->root = nullptr;
     right->root = nullptr;
-    delete left;
-    delete right;
+    delete left;//not need to use?
+    delete right;//not need to use?
 }
 
 HuffmanNode *HuffmanNode::buildHuffmanTree(myQueue &q)
@@ -65,11 +65,7 @@ HuffmanNode *HuffmanNode::buildHuffmanTree(myQueue &q)
     return nullptr;
 }
 
-void HuffmanNode::generateCodes(
-    Node *root,
-    unsigned int currentBits,
-    int currentLength,
-    SimpleMap &map)
+void HuffmanNode::generateCodes( Node *root,unsigned int currentBits,int currentLength,SimpleMap &map)
 {
     if (!root)
         return;
@@ -91,7 +87,5 @@ void HuffmanNode::generateCodes(
     // Right → add 1
     generateCodes(
         root->rightChild,
-        (currentBits << 1) | 1,
-        currentLength + 1,
-        map);
+        (currentBits << 1) | 1,currentLength + 1,map);
 }

@@ -29,7 +29,7 @@ void HuffmanCompressor::compressFile(const string &inputFile, const string &outp
         int len = code.length;
 
         for (int i = len - 1; i >= 0; i--)
-        {
+        { 
             buffer = (buffer << 1) | ((bits >> i) & 1);
             bufferLen++;
 
@@ -66,9 +66,9 @@ void HuffmanCompressor::decompressFile(const string &inputFile, const string &ou
         if (code.length > 0)
         {
             string bitStr = "";
-            for (int j = code.length - 1; j >= 0; j--)
+            for (int j = code.length - 1; j >= 0; j--)//i think i would be better for(int j=code.length;j>0;j--). but it was wrong because we have to retain the last bit while (code.bits>>j), if we will write j=code.length the last bit also get shifted and discarded which we needed to check
             {
-                bitStr += ((code.bits >> j) & 1) ? '1' : '0';
+                bitStr += ((code.bits >> j) & 1) ? '1' : '0';//We are checking from MSB and not LSB
             }
             reverseMap[bitStr] = (unsigned char)i;
         }
@@ -78,7 +78,7 @@ void HuffmanCompressor::decompressFile(const string &inputFile, const string &ou
     string bufferBits = "";
 
     while (in.read(reinterpret_cast<char *>(&inByte), 1))
-    {
+    { 
         // append bits to buffer
         for (int i = 7; i >= 0; i--)
         {
@@ -88,7 +88,7 @@ void HuffmanCompressor::decompressFile(const string &inputFile, const string &ou
             auto it = reverseMap.find(bufferBits);
             if (it != reverseMap.end())
             {
-                out.write(reinterpret_cast<char *>(&it->second), 1);
+                out.write(reinterpret_cast<char *>(&it->second), 1);  
                 bufferBits = "";
             }
         }

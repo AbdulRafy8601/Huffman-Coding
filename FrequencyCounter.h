@@ -20,11 +20,11 @@ public:
 
 FrequencyCounter::FrequencyCounter()
 {
-    freq = new int[256];
-    for (int i = 0; i < 256; i++)
+    freq = new int[256] {};//use freq=new int[256]{} and avoid following for loop
+   /* for (int i = 0; i < 256; i++)
     {
         freq[i] = 0;
-    }
+    }*/
     size = 0;
 }
 FrequencyCounter::~FrequencyCounter()
@@ -50,7 +50,7 @@ void FrequencyCounter::calculateFrequency(const string &imageFileName)
     }
 
     imageFile.close();
-    cout << "Image readed sunncesfully " << endl;
+    cout << "Image readed succesfully " << endl;
 }
 void FrequencyCounter::displayFrequency()
 {

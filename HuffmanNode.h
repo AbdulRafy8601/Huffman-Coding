@@ -12,9 +12,9 @@ class HuffmanNode
 	{
 		if (n == nullptr)
 			return;
-		deleteTree(n->leftChild);
-		deleteTree(n->rightChild);
-		delete n;
+		deleteTree(n->leftChild);//never run?
+		deleteTree(n->rightChild);//never run?
+		delete n;//never run?
 	}
 
 public:

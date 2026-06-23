@@ -6,37 +6,34 @@ class HuffmanNode;
 using namespace std;
 class myQueue
 {
-    HuffmanNode **arr;
+    HuffmanNode **arr;//like huffman nodes[256] in my code
     int maxSize;
     int currentSize;
 
 public:
     myQueue(int);
     ~myQueue();
-
     void enqueue(HuffmanNode *);
     HuffmanNode *dequeue();
     bool isFull();
     bool isEmpty();
 };
 
-// #ifndef MYQUEUE_IMPLEMENTATION
-// #define MYQUEUE_IMPLEMENTATION
 
 inline myQueue::myQueue(int s)
 {
-    maxSize = s;
+    maxSize = s;//donot need to use s as variable rather use s=256
     currentSize = 0;
-    arr = new HuffmanNode *[s];
+    arr = new HuffmanNode *[s];// use 256 in place of s
 }
 
 inline void myQueue::enqueue(HuffmanNode *n)
 {
-    if (isFull())
+    if (isFull()) 
         return;
 
     int i = currentSize - 1;
-    while (i >= 0 && arr[i]->getFrequency() > n->getFrequency())
+    while (i >= 0 && arr[i]->getFrequency() >= n->getFrequency())
     {
         arr[i + 1] = arr[i];
         i--;
@@ -46,9 +43,9 @@ inline void myQueue::enqueue(HuffmanNode *n)
     currentSize++;
 }
 
-inline bool myQueue::isFull()
+inline bool myQueue::isFull()//useless statement: Remove it, because it will never be true
 {
-    return currentSize == maxSize;
+    return currentSize == maxSize;//It will run when our current size will reaches our max size, no more sorting needed ,it will become useful when we will dynamically decide the size of arr like, the size should be 3 in case of text file consists of aaabbcccc
 }
 
 inline bool myQueue::isEmpty()
@@ -71,7 +68,7 @@ inline HuffmanNode *myQueue::dequeue()
         arr[i] = arr[i + 1];
     }
 
-    currentSize--;
+    currentSize--;//as the current size decreases, so it takes less time than my code to get the node to build tree.
     return temp;
 }
 
